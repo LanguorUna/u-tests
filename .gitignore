@@ -1,0 +1,9 @@
+node_modules
+package-lock.json
+src/*.js
+src/*.js.map
+dist/src/*.js.map
+dist/*.js.map
+report.txt
+report.html
+report.json

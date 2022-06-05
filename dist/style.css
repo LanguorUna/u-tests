@@ -1,0 +1,83 @@
+body {
+   display: flex;
+   justify-content: center;
+   font-family: Comfortaa;
+   background-color: #e4e4e4
+}
+
+h1,
+h3 {
+   margin: 10px;
+}
+
+ul {
+   list-style: none;
+}
+
+li {
+   padding: 4px;
+}
+
+.li-test-title__failed,
+.tests-result__failed,
+.errors__description {
+   color: #f44336;
+}
+
+.errors__description {
+   cursor: pointer;
+}
+
+.tests-result__successfully {
+   color: #4caf50;
+}
+
+.report {
+   display: flex;
+   flex-direction: column;
+
+   margin-top: 20px;
+
+   padding: 0 20px 20px;
+   width: 100%;
+   min-width: 768px;
+   max-width: calc(100vw - 250px);
+
+   border-style: solid;
+   border-width: 2px 2px 10px 2px;
+   background-color: white;
+}
+
+.report__title {
+   display: inline;
+   border-bottom: 3px dashed black;
+}
+
+.report__date,
+.report__title {
+   text-align: center;
+}
+
+.checkmark {
+   color: #4caf50;
+   padding: 0 4px;
+}
+
+.mark {
+   color: #f44336;
+   padding: 0 4px;
+}
+
+.errors {
+   display: flex;
+   flex-direction: column;
+   width: 100%;
+}
+
+.errors__path {
+   white-space: pre;
+}
+
+.errors__group {
+   margin: 8px 0;
+}
