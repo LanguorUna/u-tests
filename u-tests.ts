@@ -10,7 +10,7 @@ import {
    afterEach,
 } from './src/Loader';
 
-import {IConfig, TConfigKeys} from './src/Runner';
+import Runner, {IConfig, TConfigKeys} from './src/Runner';
 
 export {
    Assert,
@@ -24,5 +24,7 @@ export {
    afterEach,
 
    IConfig,
-   TConfigKeys
+   TConfigKeys,
+
+   Runner
 };
