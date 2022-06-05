@@ -6,27 +6,32 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const AbstractReporter_1 = __importDefault(require("./AbstractReporter"));
 class TextReporter extends AbstractReporter_1.default {
     static render(results) {
-        const allTests = TextReporter._renderGroup(results, true);
+        const allTests = TextReporter._renderGroup(results, 2);
         const totalInfo = TextReporter._renderTotalInfo(results);
         const failedTests = TextReporter._renderFailedTests(TextReporter._getFailedTests(results));
         return allTests + totalInfo + failedTests;
     }
-    static _renderGroup(resultsGroup, isRoot) {
+    static _renderGroup(resultsGroup, spaceLevel) {
         const str = [`\x1b[37m${resultsGroup.title || ''}\x1b[0m`];
         resultsGroup.results.forEach(element => {
             var _a;
             if (element.isGroup) {
-                str.push(TextReporter._renderGroup(element));
+                str.push(TextReporter._renderGroup(element, spaceLevel));
             }
             else {
                 const successful = (_a = element.result) === null || _a === void 0 ? void 0 : _a.successful;
                 str.push(`  ${successful ? '\x1b[32m✔\x1b[0m' : '\x1b[31m✘\x1b[0m'} \x1b[2m\x1b[37m${element.title || ''}\x1b[0m`);
             }
         });
-        const body = str.join('\n')
-            .split('\n')
-            .map((str) => '  ' + str)
-            .join('\n');
+        if (spaceLevel > 0) {
+            spaceLevel -= 1;
+        }
+        const body = spaceLevel > 0
+            ? str.join('\n')
+            : str.join('\n')
+                .split('\n')
+                .map((str) => '  ' + str)
+                .join('\n');
         return `${body}`;
     }
     static _renderTotalInfo(results) {

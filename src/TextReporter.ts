@@ -4,28 +4,32 @@ import { ITestResult } from './Test';
 
 export default class TextReporter extends AbstractReporter {
     static render(results?: IGroupResults): string {
-        
-        const allTests = TextReporter._renderGroup(results, true);
+        const allTests = TextReporter._renderGroup(results, 2);
         const totalInfo = TextReporter._renderTotalInfo(results);
         const failedTests = TextReporter._renderFailedTests(TextReporter._getFailedTests(results));
         return allTests + totalInfo + failedTests;
     }
 
-    private static _renderGroup(resultsGroup: IGroupResults, isRoot?: boolean): string {
+    private static _renderGroup(resultsGroup: IGroupResults, notSpaceLevel?: number): string {
         const str = [`\x1b[37m${resultsGroup.title || ''}\x1b[0m`];
         resultsGroup.results.forEach(element => {
             if ((element as IGroupResults).isGroup) {
-                str.push(TextReporter._renderGroup(element as IGroupResults));
+                str.push(TextReporter._renderGroup(element as IGroupResults, notSpaceLevel));
             } else {
                 const successful = (element as ITestResult).result?.successful;
                 str.push(`  ${successful ? '\x1b[32m✔\x1b[0m' : '\x1b[31m✘\x1b[0m'} \x1b[2m\x1b[37m${element.title || ''}\x1b[0m`);
             }
         });
         
-        const body = str.join('\n')
-                        .split('\n')
-                        .map((str) => '  ' + str)
-                        .join('\n');
+        if (notSpaceLevel > 0) {
+            notSpaceLevel -= 1;
+        }
+        const body = notSpaceLevel > 0
+            ? str.join('\n') 
+            : str.join('\n')
+                .split('\n')
+                .map((str) => '  ' + str)
+                .join('\n');
         return `${body}`
     }
 

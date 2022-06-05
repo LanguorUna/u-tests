@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import GroupTest, {THandller} from './GroupTest';
-import Test, { TTestBody } from './Test';
+import Test, {TTestBody} from './Test';
 
 export default class Loader {
    private static _currentFile: string;

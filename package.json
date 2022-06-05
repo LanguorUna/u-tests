@@ -1,6 +1,6 @@
 {
   "name": "u-tests",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Среда автоматизированного модульного тестирования",
   "main": "./dist/u-tests.js",
   "scripts": {
