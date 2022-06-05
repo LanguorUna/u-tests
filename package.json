@@ -13,6 +13,9 @@
   },
   "author": "Ibragimova Karina",
   "license": "ISC",
+  "repository": {
+    "url": "https://github.com/LanguorUna/u-tests"
+  },
   "devDependencies": {
     "@types/node": "^17.0.33",
     "typescript": "^4.6.4"
