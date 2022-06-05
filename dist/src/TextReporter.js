@@ -11,22 +11,19 @@ class TextReporter extends AbstractReporter_1.default {
         const failedTests = TextReporter._renderFailedTests(TextReporter._getFailedTests(results));
         return allTests + totalInfo + failedTests;
     }
-    static _renderGroup(resultsGroup, spaceLevel) {
+    static _renderGroup(resultsGroup, notSpaceLevel) {
         const str = [`\x1b[37m${resultsGroup.title || ''}\x1b[0m`];
         resultsGroup.results.forEach(element => {
             var _a;
             if (element.isGroup) {
-                str.push(TextReporter._renderGroup(element, spaceLevel));
+                str.push(TextReporter._renderGroup(element, notSpaceLevel - 1));
             }
             else {
                 const successful = (_a = element.result) === null || _a === void 0 ? void 0 : _a.successful;
                 str.push(`  ${successful ? '\x1b[32m✔\x1b[0m' : '\x1b[31m✘\x1b[0m'} \x1b[2m\x1b[37m${element.title || ''}\x1b[0m`);
             }
         });
-        if (spaceLevel > 0) {
-            spaceLevel -= 1;
-        }
-        const body = spaceLevel > 0
+        const body = notSpaceLevel > 0
             ? str.join('\n')
             : str.join('\n')
                 .split('\n')

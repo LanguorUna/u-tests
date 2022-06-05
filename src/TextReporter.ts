@@ -14,16 +14,13 @@ export default class TextReporter extends AbstractReporter {
         const str = [`\x1b[37m${resultsGroup.title || ''}\x1b[0m`];
         resultsGroup.results.forEach(element => {
             if ((element as IGroupResults).isGroup) {
-                str.push(TextReporter._renderGroup(element as IGroupResults, notSpaceLevel));
+                str.push(TextReporter._renderGroup(element as IGroupResults, notSpaceLevel - 1));
             } else {
                 const successful = (element as ITestResult).result?.successful;
                 str.push(`  ${successful ? '\x1b[32m✔\x1b[0m' : '\x1b[31m✘\x1b[0m'} \x1b[2m\x1b[37m${element.title || ''}\x1b[0m`);
             }
         });
-        
-        if (notSpaceLevel > 0) {
-            notSpaceLevel -= 1;
-        }
+
         const body = notSpaceLevel > 0
             ? str.join('\n') 
             : str.join('\n')
