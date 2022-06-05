@@ -1,7 +1,7 @@
 {
   "name": "u-tests",
-  "version": "0.1.0",
-  "description": "",
+  "version": "1.0.0",
+  "description": "Среда автоматизированного модульного тестирования",
   "main": "u-tests.js",
   "scripts": {
     "run": "u-tests",
