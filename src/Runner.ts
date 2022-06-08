@@ -22,7 +22,8 @@ export interface IConfig {
 export default class Runner {
    static prepareConfig(args: string[]): IConfig {
       if (args.length < 3) {
-         throw 'Не указаны пути к тестам';
+         console.error('Не указаны пути к тестам');
+         process.exit(1);
       }
 
       // 0-й аргумент node.exe

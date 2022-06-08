@@ -19,7 +19,8 @@ const TextReporter_1 = __importDefault(require("./TextReporter"));
 class Runner {
     static prepareConfig(args) {
         if (args.length < 3) {
-            throw 'Не указаны пути к тестам';
+            console.error('Не указаны пути к тестам');
+            process.exit(1);
         }
         // 0-й аргумент node.exe
         const config = {
